@@ -19,3 +19,7 @@ k2 = lambda t, dt, u: dt * f(t + dt/2,u + k1(t,dt,u)/2)
 k3 = lambda t, dt, u: dt * f(t + dt/2,u + k2(t,dt,u)/2)
 k4 = lambda t, dt, u: dt * f(t + dt,u + k3(t,dt,u))
 k = lambda t, dt, u: (1/6)*(k1(t,dt,u) + 2*k2(t,dt,u) + 2*k3(t,dt,u) + k4(t,dt,u)) #soma para aplicação
+
+#Runge-Kutta completo
+def runge_kutta(d,dt,u):
+    return u + k(t,dt,u)
