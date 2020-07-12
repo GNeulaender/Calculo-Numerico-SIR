@@ -21,13 +21,25 @@ for t in range(t0,t0 + 365,dt):
     x = np.append(x, t0 + t)
     if u[1] <= 1: break
 
-# Note that even in the OO-style, we use `.pyplot.figure` to create the figure.
-fig, ax = plt.subplots()  # Create a figure and an axes.
-ax.plot(x, S, label='S')  # Plot some data on the axes.
-ax.plot(x, I, label='I')  # Plot more data on the axes...
-ax.plot(x, R, label='R')  # ... and some more.
-ax.set_xlabel('x label')  # Add an x-label to the axes.
-ax.set_ylabel('y label')  # Add a y-label to the axes.
-ax.set_title("Simple Plot")  # Add a title to the axes.
-ax.legend()  # Add a legend.
-plt.savefig('grafico.svg')
+fig, ax1 = plt.subplots()  # Cria a figura e o axis para S e R
+
+color = 'tab:blue'
+ax1.set_xlabel('tempo (dias)') # Configura o nome do axis x
+ax1.set_ylabel('não-infectados') # Configura o nome do axis y para S e R
+ax1.plot(x, S, label='S', color=color)  # Plota S como linha simples
+ax1.plot(x, R, '--', label='R', color=color)  # Plota R como linha pontilhada
+ax1.tick_params(axis='y', labelcolor=color) # Configura a cor e escala do axis y para I
+
+ax2 = ax1.twinx() # Cria um novo axis para I
+
+color = 'tab:red' # Cor para I
+ax2.set_ylabel('infectados') #Configura o nome do axis y para I
+ax2.plot(x, I, label='I', color=color)  # Plota I como linha simples
+ax2.tick_params(axis='y', labelcolor=color) # Configura a cor e escala do axis y para I
+
+ax1.set_title("Teste de Simulação")  # Adiciona um título ao gráfico
+ax1.legend()  # Adiciona legenda para os plots em ax1
+#ax2.legend()  # Adiciona legenda para os plots em ax2
+
+plt.show() # Mostra o plot em uma janela externa
+#plt.savefig('grafico.svg') # Salva o arquivo do plot como .svg
