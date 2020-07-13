@@ -1,6 +1,6 @@
 import numpy as np
+from constantes import omega #Constante de taxa de remoção
 
-omega = 0.14 #Constante de taxa de remoção
 r = lambda t: 1.4 #Aproximação para função r0(t)
 dt = 1 #Constante de variação de tempo
 
