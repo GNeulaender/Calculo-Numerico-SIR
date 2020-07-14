@@ -39,3 +39,4 @@ with open('r0dados.csv', 'w', newline='') as file:
         row = [r0_max[i],r0_min[i],r0_aprox[i]]
 
         writer.writerow(row)
+#é isso
