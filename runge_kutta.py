@@ -1,5 +1,5 @@
 import numpy as np
-from constantes import omega #Constante de taxa de remoção
+from constantes import gamma #Constante de taxa de remoção
 
 r = lambda t: 1.4 #Aproximação para função r0(t)
 dt = 1 #Constante de variação de tempo
@@ -8,9 +8,9 @@ dt = 1 #Constante de variação de tempo
 u = np.array([np.float32, np.float32, np.float32]) #Entradas de u = (S, I, R)
 
 #Sistema de EDO em forma vetorial
-f1 = lambda t,u: - omega * r(t) * (u[1]*u[0])/sum(u) # dS/st
-f2 = lambda t,u: omega * (r(t) * ((u[1]*u[0])/sum(u)) - u[1]) # dI/dt
-f3 = lambda t,u: omega * u[1] # dR/dt
+f1 = lambda t,u: - gamma * r(t) * (u[1]*u[0])/sum(u) # dS/st
+f2 = lambda t,u: gamma * (r(t) * ((u[1]*u[0])/sum(u)) - u[1]) # dI/dt
+f3 = lambda t,u: gamma * u[1] # dR/dt
 f = lambda t,u: np.array([f1(t,u), f2(t,u), f3(t,u)]) # du/dt
 
 #Declarações para Runge-Kutta de quarta ordem
