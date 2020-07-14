@@ -1,3 +1,3 @@
 gamma = 0.14
 local = 'BR'
-N = 200e6
+N = 750e3

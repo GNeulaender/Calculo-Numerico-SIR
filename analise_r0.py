@@ -31,7 +31,7 @@ r0_aprox = (r0_max + r0_min)/2
 
 #criando um arquivo .csv com o r0
 
-with open('r0dados3.csv', 'w', newline='') as file:
+with open('r0dados_amapa.csv', 'w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(["r0 máximo", "r0 mínimo", "r0 aproximado"])
     for i in range(0,len(r0_max)):
