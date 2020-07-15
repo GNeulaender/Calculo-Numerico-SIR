@@ -1,9 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from runge_kutta import runge_kutta
+from habitantes_federacao import N
 
 #Declaração de dados iniciais
-u = np.array([10000,10,0]) #Condição inicial do sistema SIR
+u = np.array([N['MG']-7,7,0]) #Condição inicial do sistema SIR
 t0 = 0 #Tempo inicial
 dt = 1 #Tamanho do passo
 
@@ -19,7 +20,7 @@ for t in range(t0,t0 + 365,dt):
     I = np.append(I, u[1])
     R = np.append(R, u[2])
     x = np.append(x, t0 + t)
-    if u[1] <= 1: break
+    #if u[1] <= 1: break
 
 fig, ax1 = plt.subplots()  # Cria a figura e o axis para S e R
 
