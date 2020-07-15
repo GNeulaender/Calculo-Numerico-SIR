@@ -19,3 +19,9 @@ João Francisco
 ![Dados preliminares de São Paulo](/dados_r0/SP_r0-aprox.svg)
 ### Minas Gerais
 ![Dados preliminares de Minas Gerais](/dados_r0/MG_r0-aprox.svg)
+
+## Simulações para Minas Gerais (MG)
+### r0 = 2.6 fixo
+![Simulação do r0 fixo na epidemia de Minas Gerais](SimulaçaoA_r0fixo.svg)
+### r0 como função do tempo
+![Simulação do r0(t) na epidemia de Minas Gerais](SimulaçaoB_r0variavel.svg)
