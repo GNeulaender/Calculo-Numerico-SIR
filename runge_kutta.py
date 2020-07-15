@@ -1,8 +1,8 @@
 import numpy as np
 from constantes import gamma #Constante de taxa de remoção
 
-#r = lambda t: 2.6 #Aproximação para função r0(t)
-r = lambda t: 1.282 + 3.5658*np.exp(-t/7.80892) #Aproximação para função r0(t)
+r = lambda t: 2.6 #Aproximação para função r0(t)
+#r = lambda t: 1.282 + 3.5658*np.exp(-t/7.80892) #Aproximação para função r0(t)
 dt = 1 #Constante de variação de tempo
 
 #Condições iniciais pro sistema

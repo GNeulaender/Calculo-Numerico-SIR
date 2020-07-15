@@ -14,7 +14,7 @@ I = np.array([])
 R = np.array([]) 
 x = np.array([]) 
 
-for t in range(t0,t0 + 365,dt):
+for t in range(t0,t0 + 140,dt):
     u = runge_kutta(t0 + t, dt, u)
     S = np.append(S, u[0])
     I = np.append(I, u[1])
@@ -38,11 +38,11 @@ ax2.set_ylabel('infectados') #Configura o nome do axis y para I
 ax2.plot(x, I, label='I', color=color)  # Plota I como linha simples
 ax2.tick_params(axis='y', labelcolor=color) # Configura a cor e escala do axis y para I
 
-ax1.set_title("Teste de Simulação")  # Adiciona um título ao gráfico
+ax1.set_title("Simulação A: r0 fixo")  # Adiciona um título ao gráfico
 ax1.legend()  # Adiciona legenda para os plots em ax1
 #ax2.legend()  # Adiciona legenda para os plots em ax2
 
-plt.show() # Mostra o plot em uma janela externa
-#plt.savefig('grafico.svg') # Salva o arquivo do plot como .svg
+#plt.show() # Mostra o plot em uma janela externa
+plt.savefig('SimulaçaoA_r0fixo.svg') # Salva o arquivo do plot como .svg
 
 plt.close()
