@@ -71,23 +71,29 @@ def plot_graphs(state, data, data_s, data_r0):
 
     #Cria figura de pyplot e configura o layout
     fig = plt.figure(constrained_layout=True)
-    gs = gridspec.GridSpec(ncols=3, nrows=1, figure=fig)
+    gs = gridspec.GridSpec(ncols=2, nrows=2, figure=fig)
 
     #Plota dados da figura 0
     f_ax0 = fig.add_subplot(gs[0,0])
-    f_ax0.set_title('Casos acumulados - ' + state + ' - (data)')
+    f_ax0.set_title('Casos acumulados - ' + state)
+    f_ax0.set_ylabel('Casos')
+    f_ax0.set_xlabel('Dias')
     f_ax0.bar(x, data[0])
     f_ax0.plot(x_s, data_s[0], 'r-')
 
     #Plota dados da figura 1
     f_ax1 = fig.add_subplot(gs[0,1])
-    f_ax1.set_title('Casos novos - ' + state + ' - (data)')
+    f_ax1.set_title('Casos novos - ' + state)
+    f_ax1.set_ylabel('Novos casos')
+    f_ax1.set_xlabel('Dias')
     f_ax1.bar(x, data[1])
     f_ax1.plot(x_s, data_s[1], 'r-')
 
     #Plota dados da figura 2
-    f_ax2 = fig.add_subplot(gs[0,2])
-    f_ax2.set_title('r0 - ' + state + ' - (data)')
+    f_ax2 = fig.add_subplot(gs[1:,0:])
+    f_ax2.set_title('r0 aproximado - ' + state)
+    f_ax2.set_ylabel('r0')
+    f_ax2.set_xlabel('Dias')
     #f_ax2.plot(x_r0, data_r0[0], 'r--')
     #f_ax2.plot(x_r0, data_r0[1], 'r--')
     f_ax2.plot(x_r0, data_r0[2], 'r-')

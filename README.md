@@ -12,4 +12,10 @@ Rodrigo Ryan
 
 João Francisco
 
-
+## Alguns dados preliminares
+### Brasil
+![Dados preliminares do Brasil](/dados_r0/BR_r0-aprox.svg)
+### São Paulo
+![Dados preliminares de São Paulo](/dados_r0/SP_r0-aprox.svg)
+### Minas Gerais
+![Dados preliminares de Minas Gerais](/dados_r0/MG_r0-aprox.svg)
