@@ -22,6 +22,6 @@ João Francisco
 
 ## Simulações para Minas Gerais (MG)
 ### r0 = 2.6 fixo
-![Simulação do r0 fixo na epidemia de Minas Gerais](SimulaçaoA_r0fixo.svg)
+![Simulação do r0 fixo na epidemia de Minas Gerais](/simulacoes/SimulaçaoA_r0fixo.svg)
 ### r0 como função do tempo
-![Simulação do r0(t) na epidemia de Minas Gerais](SimulaçaoB_r0variavel.svg)
+![Simulação do r0(t) na epidemia de Minas Gerais](/simulacoes/SimulaçaoB_r0variavel.svg)

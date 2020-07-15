@@ -3,8 +3,7 @@ import csv
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
-from constantes import gamma
-from habitantes_federacao import N
+from constantes import gamma, N
 
 #Valores das constantes 'alpha'
 alpha_max = 20
