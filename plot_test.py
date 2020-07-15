@@ -44,3 +44,5 @@ ax1.legend()  # Adiciona legenda para os plots em ax1
 
 plt.show() # Mostra o plot em uma janela externa
 #plt.savefig('grafico.svg') # Salva o arquivo do plot como .svg
+
+plt.close()
