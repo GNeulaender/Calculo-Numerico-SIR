@@ -30,3 +30,5 @@ N = {
 }
 #Fonte:
 #ftp://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2019/estimativa_dou_2019.xls
+# ou
+#https://ibge.gov.br/Estimativas_de_Populacao/Estimativas_2019
