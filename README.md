@@ -1,16 +1,20 @@
 # Calculo-Numerico-SIR
 Uso do modelo SIR para modelagem da epidemia do COVID-19 no Brasil.
 
+O relatório final do grupo sobre o trabalho se encontra [aqui](relatorio/relatorio.pdf).
+
 ## Membros do Grupo
-Guido Neulaender
+- Guido Neulaender
+- Heloisa Pimentel
+- Silas Leonel
+- Rodrigo Ryan
+- João Francisco
 
-Heloisa Pimentel
-
-Silas Leonel
-
-Rodrigo Ryan
-
-João Francisco
+## Organização do Repositório
+- [analise_r0.py](analise_r0.py) faz as suavisações dos dados, calcula a sequência de r0 por tempo e exporta dos dados para [dados_r0](dados_r0).
+- [constantes.py](constantes.py) possui uma lista de valores fixos usados em vários códigos.
+- [plot_simulation.py](plot_simulation.py) plota os gráficos da simulação em MG, tanto para r0 fixo quando variável e salva os resultados em [simulacoes](simulacoes).
+- [runge_kutta.py](runge_kutta.py) é a implementação do método de Runge-Kutta de quarta ordem em Python.
 
 ## Alguns dados preliminares
 ### Brasil
