@@ -32,7 +32,6 @@
 
 \input{./title_page.tex}
 
-\section*{Introdução}
 Esse projeto foi feito com intuito de compreender a evolução do coronavírus no Estado de Minas Gerais.
 Nele foi utilizado o modelo compartimental SIR (Suscetíveis-Infectados-Removidos), que divide a população (N) em 3 grupos: suscetíveis a infecção (S); os que já foram infectados e que podem infectar os  (I); e os que já foram removidos (R), seja por terem sido curados ou pelo óbito. 
 É sabido que esses 3 grupos interagem segundo o seguinte sistema de Equações Diferenciais Ordinárias (EDOs):
@@ -84,6 +83,37 @@ Esta simulação mostra um cenário onde há a ausência da prevenção do víru
 Neste caso, rapidamente haveria um enorme número de infectados atingindo milhares de pessoas em poucos dias.
 E, também, o número de removidos, por considerar além de pessoas curadas e imunes ao vírus, considera também o número de óbitos, ou seja, não se sabe ao certo a porcentagem da população que criou imunidade ao vírus e a que não resistiu.
 Isso mostra que num quadro assim, poderiam haver danos irreparáveis à população geral.
+
+Visando entender melhor a evolução efetiva do vírus, avaliamos como $r_0$ varia com o tempo fazendo, a partir dos dados disponíveis na referência \cite{model}
+fizemos um ajuste da curva do $r_0(t)$
+usando um decaimento exponencial visto que a curva do $r_0(t)$
+tende a se aproximar do eixo das abscissas, portanto o decaimento exponencial pareceu ser mais coerente com esse comportamento.
+Para isso usamos um decaimento de primeira ordem em que a equação é da forma
+\[
+	r_0(t) = y_0 + A e^{-t/c}
+\]
+e substituindo pelos coeficientes
+\[
+	r_0(t) = 1,282 + 3,566 e^{-t/7,809},
+\]
+com isto plotamos o gráfico disponível no anexo 4.
+
+Ao comparar o os resultados das simulações observamos que A curva simulada com $r_0$
+fixo tem uma menor incidência, fazendo com que a doença tenha um ápice muito rápido e que rapidamente acomete grande parte da população.
+Já no caso do $r_0$ variável a doença demora mais para atingir o máximo de infectados ao mesmo tempo e, além de ficar mais tempo com esse máximo, ainda acomete um menor número de infectados ao mesmo tempo (neste caso, 10 vezes menos).
+As curvas de removidos e suscetíveis, R e S respectivamente, também diferem muito nos dois casos, diferente do primeiro caso, o segundo o R se se mantém alto durante todo o tempo de incidência, caindo apenas pela metade durante o período simulado.
+Também o número de removidos tende a ser menor.
+Como juntos com os removidos temos os óbitos, o número total de óbitos no caso 2 pode ser bem menor que no caso 1.
+
+Avaliando dois casos, um onde a incidência do vírus ocorre num curto período do tempo mas que há um enorme número de infectados ao longo do tempo, e outro onde o vírus incide por um tempo maior, há um menor número de infectados ao longo do tempo e um possível menor número de mortes no total, vemos que o segundo caso é menos prejudicial ao estado que o primeiro.
+Ainda, por se aproximar do real avanço do vírus no estado, ao avaliar o segundo caso estamos também avaliando as medidas de proteção tomadas pelos indivíduos, que é quase nula no primeiro.
+Ressaltamos ainda que ambas as simulações têm a mesma data incial mas a incidência do vírus se faz diferente nos dois casos.
+
+Por fim, podemos perceber, ao compreender a evolução do vírus em minas gerais que ela acontece não tão rapidamente e com um ápice que tende a levar mais de 100 dias para haver uma queda.
+O número total de retirados tende a metade do total populacional estudado, mostrando que ao menos metade da população, se não imune, vai contrair o novo coronavírus.
+
+O método numérico implementado se faz eficiente para o estudo do avanço do vírus, e a parte matemática auxilia na simulação. ainda, conseguimos a partir do avanço real do vírus simular um quadro que mostra previsões para o avanço dele ao longo dos próximos dias utilizando apenas do ferramental do método.
+Ademais, podemos perceber que modelos que matemáticos podem auxiliar na resolução de diversos problemas nas mais diversas áreas da ciência, mostrando a importância da matemática e do estudo científico para a população geral.
 
 \newpage
 \section*{Anexos}
