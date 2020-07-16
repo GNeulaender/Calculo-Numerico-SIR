@@ -1,0 +1,58 @@
+Nós sabemos resolver pelo método de Runge-Kutta PVIs da forma
+\[
+	\left\{ \begin{array}{ll}
+	y' &= f(x,y) \\
+	y(x_{0}) &= y_{0}
+	\end{array} \right.
+\]
+usando a formula de quarta ordem:
+\[
+	\begin{split}
+	y_{n+1} &= y_n + \frac{1}{6} \left( k_1 + 2 k_2 + 2 k_3 + k_4 \right)
+	, \quad \text{onde} \\
+	k_1 &= \Delta x \cdot f(x_n, y_n) \\
+	k_2 &= \Delta x \cdot f(x_n + \Delta x / 2, y_n + k_1 / 2) \\
+	k_3 &= \Delta x \cdot f(x_n + \Delta x / 2, y_n + k_2 / 2) \\
+	k_4 &= \Delta x \cdot f(x_n + \Delta x , y_n + k_3 )
+	\end{split}
+\]
+
+Precisamos, então, reescrever as equações do modelo SIR
+\[
+	\od{S}{t} = - \gamma r_0 \frac{IS}{N} , \quad
+	\od{I}{t} = \gamma \left( r_0 \frac{IS}{N} - I \right) \text{ e} \quad
+	\od{R}{t} = \gamma I
+\]
+de forma que consigamos aplicar Runge-Kutta. Para isso, vamos vetorizar!
+\[
+	\vec{u} = \left( \begin{array}{rr}
+	S \\
+	I \\
+	R
+	\end{array} \right) \text{ e } \quad
+	\vec{f}(t,\vec{u}) = \left( \begin{array}{rr}
+	f_1 \\
+	f_2 \\
+	f_3
+	\end{array} \right) \text{, com} \quad
+	f_1 = - \gamma r_0 \frac{IS}{N} , \quad
+	f_2 = \gamma \left( r_0 \frac{IS}{N} - I \right) \text{ e} \quad
+	f_3 = \gamma I
+\]
+Dessa forma temos que
+\[
+	\od{\vec{u}}{t} = \vec{f}(t, \vec{u}) \text{ e} \quad
+	\vec{u}(t_0) = u_0
+\]
+e portanto podemos aplicar Runge-Kutta:
+\[
+	\begin{split}
+	\vec{u}_{n+1} &= \vec{u}_n + \frac{1}{6} \left( \vec{k}_1 + \vec{2 k}_2 + \vec{2 k}_3 + \vec{k}_4 \right)
+	, \quad \text{onde} \\
+	\vec{k}_1 &= \Delta t \cdot f(t_n, \vec{u}_n) \\
+	\vec{k}_2 &= \Delta t \cdot f(t_n + \Delta t / 2, \vec{u}_n + k_1 / 2) \\
+	\vec{k}_3 &= \Delta t \cdot f(t_n + \Delta t / 2, \vec{u}_n + k_2 / 2) \\
+	\vec{k}_4 &= \Delta t \cdot f(t_n + \Delta t , \vec{u}_n + k_3 )
+	\end{split}
+\]
+
