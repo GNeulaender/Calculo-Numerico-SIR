@@ -21,6 +21,8 @@
 \usepackage{biblatex}
 \addbibresource{referencias.bib}
 
+\usepackage[shortlabels]{enumitem}
+
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{commath}
@@ -30,7 +32,7 @@
 
 \input{./title_page.tex}
 
-\section{Introdução}
+\section*{Introdução}
 Esse projeto foi feito com intuito de compreender a evolução do coronavírus no Estado de Minas Gerais.
 Nele foi utilizado o modelo compartimental SIR (Suscetíveis-Infectados-Removidos), que divide a população (N) em 3 grupos: suscetíveis a infecção (S); os que já foram infectados e que podem infectar os  (I); e os que já foram removidos (R), seja por terem sido curados ou pelo óbito. 
 É sabido que esses 3 grupos interagem segundo o seguinte sistema de Equações Diferenciais Ordinárias (EDOs):
@@ -42,7 +44,7 @@ Nele foi utilizado o modelo compartimental SIR (Suscetíveis-Infectados-Removido
 onde $r_0 = \frac{\beta}{\gamma}$ é constante ou dado em função do tempo. 
 Para simulação desse sistema foi utilizado o método numérico de Runge-Kutta, que foi escolhido por ser um método bastante flexível, o que permite que sejam simulados  diversos cenários com diversas condições iniciais.
 Vale ressaltar que foram utilizadas como base de dados as seguintes referências:
-o painel coronavírus, organizado pelo Professor Alberto Saa \cite{git_saa};
+o painel coronavírus, organizado pelo Professor Alberto Saa \cite{painel_covid};
 o site da Wikipédia sobre \emph{Compartmental models in epidemiology} \cite{model}
 e o livro Cálculo Numérico de Marcia A. G. Ruggiero e Vera L. R. Lopes \cite{calc_num}.
 Ao final da pesquisa, conseguimos obter alguns resultados, disponibilizados em anexo ao final do relatório, que iremos discutir brevemente o que eles querem dizer e com toda implementação do código podendo ser encontrada no GitHub do grupo \cite{git_grupo}.
@@ -57,7 +59,74 @@ Já a segunda possibilidade, que seria o $r_0$ em função do tempo, foi calcula
 	\text{, com} \quad
 	\mu(t) = \frac{\alpha}{\gamma N} (\gamma C + \dot{C})
 \]
+sendo $C$ o número de casos acumulados até o dia $t$, $\dot{C}$ são o número de casos novos e
+$\ddot{C}$ é a variação do crescimento dos casos.
+A constante $\alpha$ (entre $10 < \alpha < 20$) é uma estimativa da relação entre o valor real $R$ de indivíduos removidos e o número de casos acumulados, isto é, $R = \alpha C$.
+Tendo feito isso percebemos que o gráfico dos casos novos estava com muitos ruídos, principalmente pelo atraso dos diagnósticos, e para solucionar esse problema fizemos uma suavização do gráfico utilizando o filtro de média móvel:
+\[
+	\overline{C}_t = \frac{1}{2n+1} \sum_{k=t-n}^{t+n} C_k
+\]
+onde $n$ delimita uma vizinhança simétrica de tamanho $2n+1$ em volta de um termo $C_t$.
+No nosso caso, seguimos o mesmo procedimento adotado em "Análise automática do Painel Coronavírus" do Prof. Alberto Saa \cite{pdf_saa}, aplicando uma suavisação de $n=3$ quatro vezes.
+Para tanto, usamos a seguinte extensão de dados em cada uma das aplicações
+\[
+	C_{1-j} = C_1
+	\quad \text{e} \quad
+	C_{k+j} = C_k + C_{k-n+j} - C_{k-n},
+\]
+adicionando $2n$ novos elementos para não perdemos dados após a aplicação do filtro.
+Finalmente obtida uma suavisação satisfatória para o gráfico, calculamos os valores de $r_0$ e pudemos substituir seu valor no sistema de EDOs para ambas as possibilidades e finalmente aplicamos o método de Runge-Kutta, com a simulação podendo ser encontrada em anexo ao final do relatório.
 
+Com $r_0$ constante, e iniciando a partir de um dia onde haviam 7 casos no estado de Minas Gerais, 17 de março de 2020, e usando como período total da incidência do vírus em torno de 140 dias, chegamos ao gráfico que está no anexo 3. Nele, podemos perceber que com o avanço do vírus no estado, o grupo de infectados, aumenta abruptamente tendo um pico em torno de 70 dias e, após o dobro de tempo, tende a zero.
+qui, podemos perceber  que o vírus tende a rapidamente atingir um grande número de pessoas, fazendo o número de pessoas suscetíveis a infecção diminuir junto com o aumento de infectados, tendendo zero. Ainda, o número de removidos, aumenta a partir do ápice de infectados, mostrando que caso a doença acometer quase toda a população em pouco tempo teria um número de removidos maior que o de infectados.
+
+Esta simulação mostra um cenário onde há a ausência da prevenção do vírus.
+Neste caso, rapidamente haveria um enorme número de infectados atingindo milhares de pessoas em poucos dias.
+E, também, o número de removidos, por considerar além de pessoas curadas e imunes ao vírus, considera também o número de óbitos, ou seja, não se sabe ao certo a porcentagem da população que criou imunidade ao vírus e a que não resistiu.
+Isso mostra que num quadro assim, poderiam haver danos irreparáveis à população geral.
+
+\newpage
+\section*{Anexos}
+\begin{enumerate}[1.]
+	\item Dados preliminares do coronavírus no Brasil.
+	\begin{figure}[h]
+		\centering
+		\textbf{Brasil}\par\medskip
+		\scalebox{.7}{\includesvg{BR_r0-aprox}}
+	\end{figure}
+
+	\item Dados preliminares do coronavírus em Minas Gerais.
+	\begin{figure}[h]
+		\centering
+		\textbf{Minas Gerais}\par\medskip
+		\scalebox{.7}{\includesvg{MG_r0-aprox}}
+	\end{figure}
+
+	\newpage
+	\item Simulação com $r_0$ constante.
+	\begin{figure}[h]
+		\centering
+		\scalebox{.8}{\includesvg{sim_r0fixo}}
+	\end{figure}
+
+	\item Simulação com $r_0$ variando.
+	\begin{figure}[h]
+		\centering
+		\scalebox{.8}{\includesvg{sim_r0variavel}}
+	\end{figure}
+
+	\newpage
+	\item Ajuste exponencial da curva do $r_0(t)$ em Minas Gerais no SciDAVis.
+	\begin{figure}[h]
+		\centering
+		\scalebox{.6}{\includesvg{ajuste_r0}}
+	\end{figure}
+
+	\item Aplicação do método de Runge-Kutta no sistema de EDOs.
+	
+	\input{./runge_kutta.tex}
+	
+\end{enumerate}
 \printbibliography
 
 \end{document}
