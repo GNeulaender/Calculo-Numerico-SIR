@@ -47,7 +47,7 @@ def plot_simulation(state,title,export_file,t0,tf,dt,u,r0):
     
     #plt.show() # Mostra o plot em uma janela externa
     export_file = 'simulacoes/' + export_file + '.svg' 
-    plt.savefig(export_file) # Salva o arquivo do plot como .svg
+    plt.savefig(export_file, bbox_inches = "tight") # Salva o arquivo do plot como .svg
     
     plt.close()
 
